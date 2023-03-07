@@ -1,5 +1,6 @@
 import {View} from "./view.js"
 import {Info} from "./typedef.js"
+import {Controller} from "./controller.js"
 
 /**
  * とりあえずクラスにまとめてみた
@@ -31,8 +32,6 @@ export class Init {
         // 作成ボタンの設定
         
         const createBtn = document.querySelector(".create").querySelector(".btn");
-        createBtn.addEventListener("click", ()=>console.log(`this : ${JSON.stringify(this)}(click button)`), false);
-        createBtn.addEventListener("click", ()=>console.log(`typeof this: ${typeof this}(click button)`), false);
         createBtn.addEventListener("click", this.onCreateButtonClicked, false);
     }
 
@@ -54,8 +53,7 @@ export class Init {
         const view = new View(viewDiv);
         /** @type {Info} */
         const info = view.getInfo();
-        
-
+        Controller.create(info);
     }
 
 }
