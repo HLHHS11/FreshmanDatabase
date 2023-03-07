@@ -204,5 +204,6 @@ const COLUMN_NUM = {
   hometown:6,   // F
   contact:7,    // G
   comment:8,    // H
-  status:9      // I
+  status:9,     // I
+  schedule:10   // J 暫定
 }

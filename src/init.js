@@ -53,7 +53,19 @@ export class Init {
         const view = new View(viewDiv);
         /** @type {Info} */
         const info = view.getInfo();
-        Controller.create(info);
+        // const info = {  // テスト用サンプルデータ
+        //     name:"山田太郎",
+        //     nickname:"たろう",
+        //     department:"工",
+        //     experience:"経",
+        //     years:5,
+        //     hometown:"兵庫・灘",
+        //     contact:"れんたん",
+        //     status:"強",
+        //     schedule:"4/2'初参加'",
+        //     comment:"下宿している"
+        // };
+        Controller.create(info);    // 言うなればこの部分がルーティングか。
     }
 
 }
