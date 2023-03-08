@@ -18,4 +18,4 @@ export const Info = {};
 /**
  * @typedef {Object} ModelResponse
  */
-export const ModelResponse = {}
+export const ModelResponse = {};

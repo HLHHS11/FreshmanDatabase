@@ -51,7 +51,6 @@ export class Init {
         // viewのElementを取得
         const viewDiv = e.target.closest("#view-top");
         const view = new View(viewDiv);
-        /** @type {Info} */
         const info = view.getInfo();
         // const info = {  // テスト用サンプルデータ
         //     name:"山田太郎",
@@ -66,6 +65,15 @@ export class Init {
         //     comment:"下宿している"
         // };
         Controller.create(info);    // 言うなればこの部分がルーティングか。
+    }
+
+
+    onSearchButtonClicked (e) {
+        const viewDiv = e.target.closest("#view-top");
+        const view = new View(viewDiv);
+        const info = view.getInfo();
+        const option = {and:true, or:false};
+        Controller.read(info, option);  // and,orは一旦考えずに、検索結果の数に応じて自動でやるようにしてもいいかも
     }
 
 }

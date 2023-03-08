@@ -32,7 +32,7 @@
                   &nbsp;経験&nbsp;
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#" data-value="A">&nbsp;不明&nbsp;</a>
+                  <a class="dropdown-item" href="#" data-value="A">未選択</a>
                   <a class="dropdown-item" href="#" data-value="A">&nbsp;&nbsp;経&nbsp;&nbsp;</a>
                   <a class="dropdown-item" href="#" data-value="B">軟フレ</a>
                   <a class="dropdown-item" href="#" data-value="C">ドフレ</a>
@@ -52,7 +52,7 @@
               &nbsp;学科&nbsp;
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#" data-value="A">不明</a>
+              <a class="dropdown-item" href="#" data-value="A">未選択</a>
               <a class="dropdown-item" href="#" data-value="A">総人</a>
               <a class="dropdown-item" href="#" data-value="A">文</a>
               <a class="dropdown-item" href="#" data-value="A">教育</a>
@@ -78,16 +78,14 @@
             </div>
           </div>
         </div>
-        <div class="contact col-7 mt-2">
-          <input class="form-control" type="text" placeholder="連絡担当">
-        </div>
-        <div class="status col-5 mt-2">
+        <div class="status col-4 mt-2">
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               入会意思
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#" data-value="A">未選択</a>
               <a class="dropdown-item" href="#" data-value="A">不明</a>
               <a class="dropdown-item" href="#" data-value="A">強</a>
               <a class="dropdown-item" href="#" data-value="A">弱</a>
@@ -95,21 +93,30 @@
             </div>
           </div>
         </div>
+        <div class="hometown col-3 mt-2">
+          <input class="form-control" type="text" placeholder="出身">
+        </div>
+        <div class="contact col-5 mt-2">
+          <input class="form-control" type="text" placeholder="連絡担当">
+        </div>
         <div class="schedule col-12 mt-2">
           <input class="form-control" type="text" placeholder="参加日程">
         </div>
         <div class="comment col-12 mt-2">
           <!-- <label for="exampleFormControlTextarea1" class="form-label">comment</label> -->
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="備考"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="備考"></textarea>
         </div>
-        <div class="schedule-with-comment col-3 mt-2">
+        <!-- <div class="schedule-with-comment col-3 mt-2">
           <button type="button" class="btn btn-success">日程</button>
-        </div>
+        </div> -->
         <div class="create col-3 mt-2">
           <button type="button" class="btn btn-success">作成</button>
         </div>
         <div class="search col-3 mt-2">
           <button type="button" class="btn btn-success">検索</button>
+        </div>
+        <div class="clear col-3 mt-2">
+          <button type="button" class="btn btn-success">ｸﾘｱ</button>
         </div>
         <!-- <div class="delete col-3 mt-2">
           <button type="button" class="btn btn-secondary">削除</button>
@@ -131,12 +138,13 @@
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    軟フレ
+                    &nbsp;経験&nbsp;
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#" data-value="A">A</a>
-                    <a class="dropdown-item" href="#" data-value="B">B</a>
-                    <a class="dropdown-item" href="#" data-value="C">C</a>
+                    <a class="dropdown-item" href="#" data-value="A">未選択</a>
+                    <a class="dropdown-item" href="#" data-value="A">&nbsp;&nbsp;経&nbsp;&nbsp;</a>
+                    <a class="dropdown-item" href="#" data-value="B">軟フレ</a>
+                    <a class="dropdown-item" href="#" data-value="A">ドフレ</a>
                   </div>
                 </div>
               </div>
@@ -150,41 +158,66 @@
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                地球工
+                &nbsp;学科&nbsp;
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#" data-value="A">A</a>
-                <a class="dropdown-item" href="#" data-value="B">B</a>
-                <a class="dropdown-item" href="#" data-value="C">C</a>
+                <a class="dropdown-item" href="#" data-value="A">未選択</a>
+                <a class="dropdown-item" href="#" data-value="A">総人</a>
+                <a class="dropdown-item" href="#" data-value="A">文</a>
+                <a class="dropdown-item" href="#" data-value="A">教育</a>
+                <a class="dropdown-item" href="#" data-value="A">法</a>
+                <a class="dropdown-item" href="#" data-value="A">経済</a>
+                <a class="dropdown-item" href="#" data-value="A">理</a>
+                <a class="dropdown-item" href="#" data-value="A">医</a>
+                <a class="dropdown-item" href="#" data-value="A">人健</a>
+                <a class="dropdown-item" href="#" data-value="A">薬</a>
+                <a class="dropdown-item" href="#" data-value="A">工</a>
+                <a class="dropdown-item" href="#" data-value="A">地球工</a>
+                <a class="dropdown-item" href="#" data-value="A">電電</a>
+                <a class="dropdown-item" href="#" data-value="A">情報</a>
+                <a class="dropdown-item" href="#" data-value="A">物工</a>
+                <a class="dropdown-item" href="#" data-value="A">工化</a>
+                <a class="dropdown-item" href="#" data-value="A">建築</a>
+                <a class="dropdown-item" href="#" data-value="A">農</a>
+                <a class="dropdown-item" href="#" data-value="A">食品</a>
+                <a class="dropdown-item" href="#" data-value="A">資源</a>
+                <a class="dropdown-item" href="#" data-value="A">食環</a>
+                <a class="dropdown-item" href="#" data-value="A">地環</a>
+                <a class="dropdown-item" href="#" data-value="A">森林</a>
               </div>
             </div>
           </div>
-          <div class="contact col-7 mt-2">
-            <input class="form-control" type="text" placeholder="連絡担当">
-          </div>
-          <div class="status col-5 mt-2">
+          <div class="status col-4 mt-2">
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                強
+                入会意思
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#" data-value="A">A</a>
-                <a class="dropdown-item" href="#" data-value="B">B</a>
-                <a class="dropdown-item" href="#" data-value="C">C</a>
+                <a class="dropdown-item" href="#" data-value="A">未選択</a>
+                <a class="dropdown-item" href="#" data-value="A">不明</a>
+                <a class="dropdown-item" href="#" data-value="A">強</a>
+                <a class="dropdown-item" href="#" data-value="A">弱</a>
+                <a class="dropdown-item" href="#" data-value="A">セレ</a>
               </div>
             </div>
           </div>
-          <div class="contact col-12 mt-2">
+          <div class="hometown col-3 mt-2">
+            <input class="form-control" type="text" placeholder="出身">
+          </div>
+          <div class="contact col-5 mt-2">
+            <input class="form-control" type="text" placeholder="連絡担当">
+          </div>
+          <div class="schedule col-12 mt-2">
             <input class="form-control" type="text" placeholder="参加日程">
           </div>
           <div class="comment col-12 mt-2">
             <!-- <label for="exampleFormControlTextarea1" class="form-label">comment</label> -->
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="備考"></textarea>
           </div>
-          <div class="schedule-with-comment col-3 mt-2">
+          <!-- <div class="schedule-with-comment col-3 mt-2">
             <button type="button" class="btn btn-primary">日程</button>
-          </div>
+          </div> -->
           <div class="apply col-3 mt-2">
             <button type="button" class="btn btn-primary">適用</button>
           </div>
