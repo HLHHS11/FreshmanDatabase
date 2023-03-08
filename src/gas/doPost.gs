@@ -4,18 +4,13 @@ function doPost(e) {
   /** @type {ModelRequest} */
   const modelRequest = JSON.parse(e.postData.contents);
   const requestType = modelRequest.request;
+  let modelResponse;
+  // リクエストによって分岐
   if (requestType === "create") {
-    Model.create(modelRequest);
+    modelResponse = Model.create(modelRequest);
   }
-  
-  // データベースにかかわる処理を行う
-  // ModelController的なのがあるといいだろう
-  
-  
+
   // レスポンスを返す
-  // const data = JSON.parse(e.postData.contents);
-  let response = {message:"Hello World!"};
-  response.param = JSON.parse(e.postData.contents);  // curlからJSONまで送るのは面倒なので一旦保留
-  let jsonResponse = JSON.stringify(response);
+  const jsonResponse = JSON.stringify(modelResponse);
   return ContentService.createTextOutput(jsonResponse).setMimeType(ContentService.MimeType.JSON);
 }
