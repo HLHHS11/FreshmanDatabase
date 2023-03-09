@@ -17,16 +17,17 @@ const PROFILE_MAP = {
 
 const viewTop = document.getElementById("view-top");
 new Init(new View(viewTop)).init();
+/** @type {View[]} */
 
-for (let i=0; i<2; i++) {
-    const template = document.getElementById("view-template");
-    const clone = template.content.cloneNode(true);
-    const outerElem = document.createElement("div");
-    const containerElem = document.getElementsByClassName("container-fluid")[0];
-    outerElem.id = `view${String(i)}`;
-    outerElem.appendChild(clone);
-    containerElem.appendChild(outerElem);
-}
+// for (let i=0; i<2; i++) {
+//     const template = document.getElementById("view-template");
+//     const clone = template.content.cloneNode(true);
+//     const outerElem = document.createElement("div");
+//     const containerElem = document.getElementsByClassName("container-fluid")[0];
+//     outerElem.id = `view${String(i)}`;
+//     outerElem.appendChild(clone);
+//     containerElem.appendChild(outerElem);
+// }
 
 
 

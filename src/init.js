@@ -31,8 +31,12 @@ export class Init {
         }
         // 作成ボタンの設定
         
+        const searchBtn = document.querySelector(".search").querySelector(".btn");
+        const clearBtn = document.querySelector(".clear").querySelector(".btn");
         const createBtn = document.querySelector(".create").querySelector(".btn");
         createBtn.addEventListener("click", this.onCreateButtonClicked, false);
+        searchBtn.addEventListener("click", this.onSearchButtonClicked, false);
+        clearBtn.addEventListener("click", this.onClearButtonClicked, false);
     }
 
     /**
@@ -51,7 +55,7 @@ export class Init {
         // viewのElementを取得
         const viewDiv = e.target.closest("#view-top");
         const view = new View(viewDiv);
-        const info = view.getInfo();
+        // const info = view.getInfo();
         // const info = {  // テスト用サンプルデータ
         //     name:"山田太郎",
         //     nickname:"たろう",
@@ -64,16 +68,24 @@ export class Init {
         //     schedule:"4/2'初参加'",
         //     comment:"下宿している"
         // };
-        Controller.create(info);    // 言うなればこの部分がルーティングか。
+        Controller.create(view);    // 言うなればこの部分がルーティングか。
     }
 
 
     onSearchButtonClicked (e) {
+        // 既存の検索結果を消去してから検索処理開始
+        View.clearViewElements();
         const viewDiv = e.target.closest("#view-top");
         const view = new View(viewDiv);
-        const info = view.getInfo();
         const option = {and:true, or:false};
-        Controller.read(info, option);  // and,orは一旦考えずに、検索結果の数に応じて自動でやるようにしてもいいかも
+        Controller.read(view, option);  // and,orは一旦考えずに、検索結果の数に応じて自動でやるようにしてもいいかも
+    }
+
+
+    onClearButtonClicked (e) {
+        const viewDiv = e.target.closest("#view-top");
+        const view = new View(viewDiv);
+        view.clearInfo();
     }
 
 }

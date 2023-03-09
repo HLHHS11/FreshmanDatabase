@@ -1,5 +1,6 @@
 
 /**
+ * 230309 _idプロパティを追加
  * @typedef {Object} Info
  * @property {string} name
  * @property {string} nickname
@@ -11,11 +12,16 @@
  * @property {string} status
  * @property {string} schedule
  * @property {string} comment
+ * @property {string} id
  */
 export const Info = {};
 
 
 /**
  * @typedef {Object} ModelResponse
+ * @property {String} request
+ * @property {String} status
+ * @property {Info[]} infoArr
+ * @property {Object} option
  */
 export const ModelResponse = {};
