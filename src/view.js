@@ -10,7 +10,8 @@ import { EventHandler } from "./eventHandler.js"
 export class View {
     
     /**
-     * 
+     * ボタン等を初期化（クリックに反応するようにする）
+     * addEventListener()の第２引数は「イベントハンドラ」で、ボタンが押されたら具体的に何を行うのかが書かれている
      * @param {HTMLElement} viewElm
      */
     constructor (viewElm) {
@@ -43,7 +44,7 @@ export class View {
 
 
     /**
-     * _idプロパティも、ここで
+     * viewから値を取得
      * @returns {Info}
      */
     getInfo () {
@@ -72,7 +73,7 @@ export class View {
     }
 
     /**
-     * 返り値はない予定。
+     * viewに引数で与えられた値をセット
      * @param {Info} info 
      */
     setInfo (info) {
