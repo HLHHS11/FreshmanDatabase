@@ -52,6 +52,7 @@ export class Init {
      * @param {Event} e 
      */
     onCreateButtonClicked (e) {
+        View.clearViewElements();
         // viewのElementを取得
         const viewDiv = e.target.closest("#view-top");
         const view = new View(viewDiv);

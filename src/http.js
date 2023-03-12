@@ -2,7 +2,7 @@
 export class GasApiClient {
     
     /**
-     * 
+     * テスト用。もし使うなら、引数のとこをちゃんと作り変えること
      * @param {String} url 
      * @param {String} param 
      */
@@ -14,9 +14,10 @@ export class GasApiClient {
     }
 
     /**
-     * 
+     * requestDataは基本的にはModelRequestオブジェクトのつもりだが、
+     * 他にもデータを送りたくなることがあるかもしれないので、型は広くObjectとしておく
      * @param {String} url 
-     * @param {Object} requestData - ModelRequestオブジェクトが想定される
+     * @param {Object} requestData
      * @return {Object} - JSONとしてパースした結果
      */
     static async httpPostRequest (url, requestData) {

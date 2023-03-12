@@ -1,4 +1,5 @@
-import {Info} from "./typedef.js"
+import { Info } from "./typedef.js"
+import { EventHandler } from "./eventHandler.js"
 
 /**
  * テンプレートから入力値を取得したりする
@@ -15,6 +16,31 @@ export class View {
     constructor (viewElm) {
         this.viewElm = viewElm;
     }
+
+    init () {
+        // ドロップダウンのイベントリスナー設定
+        const dropdownBtns = this.viewElm.querySelectorAll(".dropdown-menu .dropdown-item");
+        for (const button of dropdownBtns) {
+            button.addEventListener("click",EventHandler.onDropdownButtonClicked, false);
+        }
+
+        if (this.viewElm.id === "view-top") {
+            const searchBtn = this.viewElm.querySelector(".search").querySelector(".btn");
+            const clearBtn = this.viewElm.querySelector(".clear").querySelector(".btn");
+            const createBtn = this.viewElm.querySelector(".create").querySelector(".btn");
+            createBtn.addEventListener("click", EventHandler.onCreateButtonClicked, false);
+            searchBtn.addEventListener("click", EventHandler.onSearchButtonClicked, false);
+            clearBtn.addEventListener("click", EventHandler.onClearButtonClicked, false);
+        } else {
+            // update, delete
+            const updateBtn = this.viewElm.querySelector(".update").querySelector(".btn");
+            const deleteBtn = this.viewElm.querySelector(".delete").querySelector(".btn");
+            updateBtn.addEventListener("click", EventHandler.onUpdateButtonClicked, false);
+            deleteBtn.addEventListener("click", EventHandler.onDeleteButtonClicked, false);
+
+        }
+    }
+
 
     /**
      * _idプロパティも、ここで
@@ -66,7 +92,8 @@ export class View {
 
 
     /**
-     * ビューの情報をすべて元に戻す
+     * viewの操作画面の情報をすべて初期値に戻す
+     * view0など検索結果に対しても使えるが、現状クリアボタンが#view-topにしかないので、#view-top限定
      */
     clearInfo () {
         /** @type {Info} */

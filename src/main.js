@@ -16,7 +16,8 @@ const PROFILE_MAP = {
 
 
 const viewTop = document.getElementById("view-top");
-new Init(new View(viewTop)).init();
+// new Init(new View(viewTop)).init();
+new View(viewTop).init();
 /** @type {View[]} */
 
 // for (let i=0; i<2; i++) {
