@@ -38,6 +38,8 @@ export class View {
             const deleteBtn = this.viewElm.querySelector(".delete").querySelector(".btn");
             updateBtn.addEventListener("click", EventHandler.onUpdateButtonClicked, false);
             deleteBtn.addEventListener("click", EventHandler.onDeleteButtonClicked, false);
+            this.viewElm.addEventListener("touchstart", EventHandler.onTouchStart, false);
+            this.viewElm.addEventListener("touchend", EventHandler.onTouchEnd, false);
 
         }
     }
@@ -112,6 +114,24 @@ export class View {
             id:""
         };
         this.setInfo(defaultInfo);
+    }
+
+
+    /**
+     * カラーコードの例
+     * 青系:#d9edf7, 赤系:#f2dede, 緑系:#dff0d8, 灰色系:#f2f2f2
+     * 薄い青:#E0F5FF
+     * @param {String} colorCode
+     */
+    setBackground (colorCode) {
+        this.viewElm.style.backgroundColor = colorCode; // ブロック全体の背景色を変える
+        // ↓↓テキストボックスの中の背景色まで変える
+        // const inputElmCollection = this.viewElm.getElementsByTagName("input");
+        // for (let inputElm of inputElmCollection) {  // 各inputタグの中の背景色を変える
+        //     // inputElm.setAttribute("background-color", colorCode);
+        //     inputElm.style.backgroundColor = colorCode;
+        // }
+        // this.viewElm.getElementsByTagName("textarea")[0].style.backgroundColor = colorCode;
     }
 
 

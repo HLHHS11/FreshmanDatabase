@@ -81,7 +81,7 @@ class Model {
           let newSearchResults = [];
           let newIDArray = [];
           for (let i=0; i<searchResults.length; i++) {
-            if (searchResults[i][COLUMN_NUM[key]-1].includes(value)) {
+            if (String(searchResults[i][COLUMN_NUM[key]-1]).includes(value)) {
               newSearchResults.push(searchResults[i])
               newIDArray.push(idArray[i]);   // 行番号に変換するため+1
             }
@@ -100,9 +100,10 @@ class Model {
       for (let i=0; i<searchResults.length; i++) {
         
         const eachData = searchResults[i];
-        const deleteFlag = eachData[COLUMN_NUM.comment-1].includes("@delete");
+        /** @type {Boolean} 集めてきた各データに"@delete"のフラグが含まれていればtrue */
+        const deleteFlag = String(eachData[COLUMN_NUM.comment-1]).includes("@delete");
         /** @type {Boolean} 検索条件の備考欄に"@delete"が含まれていればtrue */
-        const showDeletedData = filteringInfo.comment.includes("@delete");
+        const showDeletedData = String(filteringInfo.comment).includes("@delete");
 
         if (deleteFlag && !showDeletedData) { // 削除フラグが立っており、かつ検索条件で「削除済みデータを表示する」指示もない場合
           continue;
@@ -157,7 +158,7 @@ class Model {
       const targetRow = DBSheet.getRange(id,1,1,10);  // !!カラム数が増えたら変える必要がある
 
       // 値を挿入
-      const deleteFlag = convertedArr[COLUMN_NUM.comment-1].includes("@delete");
+      const deleteFlag = String(convertedArr[COLUMN_NUM.comment-1]).includes("@delete");
       targetRow.setValues([convertedArr]);
       if (deleteFlag) {
         // DBSheet.hideRow(targetRow);

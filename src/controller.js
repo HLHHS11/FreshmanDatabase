@@ -88,7 +88,7 @@ export class Controller {
                 } else {
                     alert(`条件に一致するデータが見つかりませんでした。条件を変えて再度お試しください。\nヒント：各項目は部分一致検索が可能ですので、不明な項目はキーワードを短くするか、空欄にしてください。`)
                 }
-            } else if (modelResponse === "failed") {
+            } else if (modelResponse.status === "failed") {
                 alert(`readリクエスト失敗:\n${modelResponse.option.errorMsg}`);
             } else {
                 alert("通常考えられないエラー。postレスポンス返ってこなかった時とかならあり得るかも。エラーハンドラちゃんと実装しときたい");

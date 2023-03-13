@@ -72,4 +72,19 @@ export class EventHandler {
         view.clearInfo();
     }
 
+
+    static onTouchStart (e) {
+        const viewElm = e.target.closest('[id^="view"]');
+        const view = new View(viewElm);
+        // view.setBackground("#e9f1f5");
+        view.setBackground("#f2f2f2");
+    }
+
+
+    static onTouchEnd (e) {
+        const viewElm = e.target.closest('[id^="view"]');
+        const view = new View(viewElm);
+        view.setBackground("#FFFFFF")
+    }
+
 }
