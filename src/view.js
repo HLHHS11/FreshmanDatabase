@@ -40,7 +40,6 @@ export class View {
             deleteBtn.addEventListener("click", EventHandler.onDeleteButtonClicked, false);
             this.viewElm.addEventListener("touchstart", EventHandler.onTouchStart, false);
             this.viewElm.addEventListener("touchend", EventHandler.onTouchEnd, false);
-
         }
     }
 

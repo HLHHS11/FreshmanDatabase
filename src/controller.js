@@ -28,8 +28,10 @@ export class Controller {
             }
         }
         const modelRequest = new ModelRequest("create", info);
+
         // const requestData = {name:"HogeHuga", age:20};  // modelRequestの簡易版
 
+        // 通信結果を待つためのおまじない
         (async function () {
             /** @type {ModelResponse} */
             const modelResponse = await GasApiClient.httpPostRequest(URL, modelRequest);
@@ -38,14 +40,16 @@ export class Controller {
             // viewに情報を渡す
             // といってもviewがやることは殆ど無いだろう。
             if (modelResponse.status === "succeed") {
+                debugger;
                 // まずはテンプレートを表示
                 const viewElm = View.createViewElementWithNumbering(0);
                 // Infoをセットする
                 const view = new View(viewElm);
                 view.init();
+
                 view.setInfo(modelResponse.infoArr[0]);
                 // #view-topに対してもdata-id属性をセット。重複createを防ぐためだ。
-                document.getElementById("view-top").dataset.id = modelResponse.infoArr[0].id;
+                // document.getElementById("view-top").dataset.id = modelResponse.infoArr[0].id;
                 alert(`Request "create" was successful.\nid:${modelResponse.infoArr[0].id}`);
             } else if (modelResponse.status === "failed") {
                 alert(`createリクエスト失敗:\n${modelResponse.option.errorMsg}`);

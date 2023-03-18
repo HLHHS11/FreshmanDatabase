@@ -21,6 +21,7 @@ export class GasApiClient {
      * @return {Object} - JSONとしてパースした結果
      */
     static async httpPostRequest (url, requestData) {
+        console.log(requestData);
         const response = await fetch(url, {
             method: "POST",
             mode: "cors",
