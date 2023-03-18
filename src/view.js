@@ -89,7 +89,7 @@ export class View {
         this.viewElm.querySelector(".schedule").querySelector(".form-control").value = info.schedule;
         this.viewElm.querySelector(".comment").querySelector(".form-control").value = info.comment;
         this.viewElm.dataset.id = info.id;
-        
+
     }
 
 
