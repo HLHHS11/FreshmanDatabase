@@ -40,7 +40,6 @@ export class Controller {
             // viewに情報を渡す
             // といってもviewがやることは殆ど無いだろう。
             if (modelResponse.status === "succeed") {
-                debugger;
                 // まずはテンプレートを表示
                 const viewElm = View.createViewElementWithNumbering(0);
                 // Infoをセットする

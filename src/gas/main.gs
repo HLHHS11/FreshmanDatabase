@@ -25,15 +25,15 @@ function onEdit (e) {
 
           } else {  // 待たずに実行
             // 例えば年数を先に埋めてから経験種別を入れた場合、こちらに入ることになる
-            try { // 一時的にactiveCell等の情報を変更してsetColorByYears()を実行
+            try { // 一時的にcurrentCell等の情報を変更してsetColorByYears()を実行
               // setColor.SHT_ELMプロパティは定数SHT_ELMへの参照をもつので、参照先のSHT_ELMの方を変更すればよい
-              SHT_ELM.activeCell = SHT_ELM.activeSheet.getRange(SHT_ELM.row, COLUMN_NUM.years);
+              SHT_ELM.currentCell = SHT_ELM.activeSheet.getRange(SHT_ELM.row, COLUMN_NUM.years);
               SHT_ELM.column = COLUMN_NUM.years;
               setColor.setColorByYears();
             } catch (error) {
               console.log("エラー発生");  // エラーメッセージちゃんと作っとかなあかん
             } finally {
-              SHT_ELM.activeCell = SHT_ELM.activeSheet.getRange(SHT_ELM.row, COLUMN_NUM.experience);
+              SHT_ELM.currentCell = SHT_ELM.activeSheet.getRange(SHT_ELM.row, COLUMN_NUM.experience);
               SHT_ELM.column = COLUMN_NUM.experience;
             }
           }
@@ -53,13 +53,39 @@ function onEdit (e) {
 
 
 class SheetElements {
-  constructor () {
+  /**
+   * currentCellの行・列を指定してSheetElementsオブジェクトとして生成します
+   * row, columnの一方でも有効でなければ、currentCellはgetCurrentCell()により得られるセルとなります。
+   * @param {number} row 
+   * @param {number} column 
+   */
+  constructor (row, column) {
     this.ss = SpreadsheetApp.getActiveSpreadsheet();
     this.activeSheet = this.ss.getActiveSheet();
-    this.activeCell = this.activeSheet.getActiveCell();
-    this.row = this.activeCell.getRow();
-    this.column = this.activeCell.getColumn();
+    // /** @readonly */
+    // this.activeCell = this.activeSheet.getActiveCell();
+    if (row>=1&&column>=1) {
+      this.changeCurrentCell(row, column);
+    } else {
+      this.currentCell = this.activeSheet.getCurrentCell();
+      this.row = this.currentCell.getRow();
+      this.column = this.currentCell.getColumn();
+    }
+
   }
+
+  /**
+   * currentCellプロパティの参照するセルを変更します
+   * @param {number} row 移動先の行番号
+   * @param {number} column 移動先の列番号
+   */
+  changeCurrentCell (row, column) {
+    this.currentCell = this.activeSheet.getRange(row, column);
+    this.row = row;
+    this.column = column;
+    this.activeSheet.setCurrentCell(this.currentCell);
+  }
+
 }
 
 
@@ -99,8 +125,8 @@ class SetColor {
       地環  : "#55c955",
       森林  : "#55c955"
     };
-    let color = DEPARTMENT_COLOR_MAP[this.SHT_ELM.activeCell.getValue()] || "#ffffff";
-    this.SHT_ELM.activeCell.setBackground(color);
+    const color = DEPARTMENT_COLOR_MAP[this.SHT_ELM.currentCell.getValue()] || "#ffffff";
+    this.SHT_ELM.currentCell.setBackground(color);
   }
 
   setColorByExperience () {
@@ -110,8 +136,8 @@ class SetColor {
       軟フレ: "#6BDCFF",
       ドフレ: "#EBEBEB"
     };
-    let color = EXPERIENCE_COLOR_MAP[this.SHT_ELM.activeCell.getValue()] || "#ffffff";
-    this.SHT_ELM.activeCell.setBackground(color);
+    const color = EXPERIENCE_COLOR_MAP[this.SHT_ELM.currentCell.getValue()] || "#ffffff";
+    this.SHT_ELM.currentCell.setBackground(color);
     this.SHT_ELM.activeSheet.getRange(this.SHT_ELM.row, COLUMN_NUM.years).setBackground(color);
   }
 
@@ -133,10 +159,15 @@ class SetColor {
         short : "#EBEBEB",
         mid   : "#EBEBEB",
         long  : "#EBEBEB"
+      },
+      空欄  : {
+        short : "#ffffff",
+        mid   : "#ffffff",
+        long  : "#ffffff"
       }
     };
-    let expCell = this.SHT_ELM.activeSheet.getRange(this.SHT_ELM.row, COLUMN_NUM.experience);
-    let years = Number(this.SHT_ELM.activeCell.getValue());
+    const expCell = this.SHT_ELM.activeSheet.getRange(this.SHT_ELM.row, COLUMN_NUM.experience);
+    const years = Number(this.SHT_ELM.currentCell.getValue());
     let category;
     if (years > 6) {
       category = "long";
@@ -147,8 +178,8 @@ class SetColor {
     } else {  // 有効な値でない場合はすべてmidとする
       category = "mid";
     }
-    let color = YEARS_COLOR_MAP[expCell.getValue()][category] || "#ffffff";
-    this.SHT_ELM.activeCell.setBackground(color);
+    const color = (YEARS_COLOR_MAP[expCell.getValue()] || YEARS_COLOR_MAP["空欄"])[category] || "#ffffff";
+    this.SHT_ELM.currentCell.setBackground(color);
     expCell.setBackground(color);
   }
 
@@ -161,16 +192,31 @@ class SetColor {
       セレ  : {color:"#dbdbdb", weight:"normal"},  // 濃いめの灰色
       不明  : {color:"#ffffff", weight:"normal"} // 白
     };
-    let status = this.SHT_ELM.activeCell.getValue();
-    let color = STATUS_COLOR_MAP[status]["color"] || "#fffff";
-    let weight = STATUS_COLOR_MAP[status]["weight"] || "normal";
+    const status = this.SHT_ELM.currentCell.getValue();
+    const color = (STATUS_COLOR_MAP[status] || STATUS_COLOR_MAP["不明"])["color"] || "#ffffff";
+    const weight = (STATUS_COLOR_MAP[status] || STATUS_COLOR_MAP["不明"])["weight"] || "normal";
 
-    let nameAndNickname = this.SHT_ELM.activeSheet.getRange(this.SHT_ELM.row, COLUMN_NUM.nickname, 1, 2); // nicknameカラムの右にnameカラムがあることを前提としている
+    const nameAndNickname = this.SHT_ELM.activeSheet.getRange(this.SHT_ELM.row, COLUMN_NUM.nickname, 1, 2); // nicknameカラムの右にnameカラムがあることを前提としている
     nameAndNickname.setBackground(color);
-    this.SHT_ELM.activeCell.setBackground(color);
+    this.SHT_ELM.currentCell.setBackground(color);
     nameAndNickname.setFontWeight(weight);
-    this.SHT_ELM.activeCell.setFontWeight(weight);
+    this.SHT_ELM.currentCell.setFontWeight(weight);
   }    
+
+
+  /**
+   * 引数で指定した行全体の着色を行います
+   * @param {number} row 色のセットを行う行
+   */
+  setColor (row) {
+    this.SHT_ELM.changeCurrentCell(row, COLUMN_NUM.department);
+    this.setColorByDepartment();
+    this.SHT_ELM.changeCurrentCell(row, COLUMN_NUM.years);
+    this.setColorByYears();
+    this.SHT_ELM.changeCurrentCell(row, COLUMN_NUM.status);
+    this.setColorByStatus();
+  }
+
 
   /**
    * 引数でカラムの名前を与え、それに対応する形式でセルの値のチェック・修正を行います

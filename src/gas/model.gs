@@ -38,6 +38,9 @@ class Model {
       // targetRow.setValues(convertedArr);
       targetRow.setValues([convertedArr]);
       
+      // 非同期の色変更処理も呼び出す
+      this.asyncSetColor(id);
+
       console.log("create処理終了");
       // infoArrの部分に、infoにidを加えたものを格納
       info.id = id;
@@ -166,6 +169,9 @@ class Model {
         option.delete = true;
       }
 
+      // 非同期の色変更処理も呼び出す
+      this.asyncSetColor(id);
+
       return new ModelResponse(modelRequest.request, "succeed", [info], option);
     } catch (e) {
       return new ModelResponse(modelRequest.request, "failed", [], {
@@ -183,6 +189,16 @@ class Model {
   static delete (modelRequest) {
     return this.update(modelRequest);
   }
+
+  /**
+   * SetColorクラスのインスタンスメソッドsetColor()を非同期で呼び出す
+   * どうやらGASでは勝手に同期的に実行されてしまうようだが...
+   * @param {number} row 
+   */
+  static async asyncSetColor (row) {
+    return new SetColor(new SheetElements()).setColor(row);
+  }
+
 
 }
 

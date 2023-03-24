@@ -99,9 +99,23 @@
         <div class="contact col-5 mt-2">
           <input class="form-control" type="text" placeholder="連絡担当">
         </div>
+        <!-- <div class="input-group">
+          <div class="schedule col-9 mt-2">
+            <input class="form-control" type="text" placeholder="参加日程" readonly style="background-color: #ffffff;">
+          </div>
+          <div class="input-group-append">
+            <span class="input-group-text">編集</span>
+          </div>
+        </div> -->
         <div class="schedule col-12 mt-2">
-          <input class="form-control" type="text" placeholder="参加日程">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="参加日程" aria-label="" aria-describedby="basic-addon1" readonly style="background-color: #ffffff;">
+            <div class="input-group-append">
+              <button class="btn btn-success" type="button">編集</button>
+            </div>
+          </div>
         </div>
+
         <div class="comment col-12 mt-2">
           <!-- <label for="exampleFormControlTextarea1" class="form-label">comment</label> -->
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="備考"></textarea>
@@ -208,8 +222,16 @@
           <div class="contact col-5 mt-2">
             <input class="form-control" type="text" placeholder="連絡担当">
           </div>
+          <!-- <div class="schedule col-12 mt-2">
+            <input class="form-control" type="text" placeholder="参加日程 (readonly)" readonly style="background-color: #ffffff;">
+          </div> -->
           <div class="schedule col-12 mt-2">
-            <input class="form-control" type="text" placeholder="参加日程">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="参加日程" aria-label="" aria-describedby="basic-addon1" readonly style="background-color: #ffffff;">
+              <div class="input-group-append">
+                <button class="btn btn-success" type="button">編集</button>
+              </div>
+            </div>
           </div>
           <div class="comment col-12 mt-2">
             <!-- <label for="exampleFormControlTextarea1" class="form-label">comment</label> -->
