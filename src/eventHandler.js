@@ -73,6 +73,10 @@ export class EventHandler {
     }
 
 
+    static onScheduleButtonClicked (e) {
+        // 日程の編集ボタンが押されたら、日程の編集画面を表示する
+    }
+
     static onTouchStart (e) {
         const viewElm = e.target.closest('[id^="view"]');
         const view = new View(viewElm);

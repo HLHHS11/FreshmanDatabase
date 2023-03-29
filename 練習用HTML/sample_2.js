@@ -1,3 +1,5 @@
+// オーバーレイ表示サンプル
+
 const overlay = document.getElementById('overlay');
 
 function showOverlay() {
@@ -28,3 +30,64 @@ async function fetchData() {
     hideOverlay(); // 通信終了時にオーバーレイを非表示
   }
 }
+
+
+// sessionStorage使用練習
+// const updateBtn = document.querySelector(".update");
+const updateBtn = document.querySelector(".update");
+updateBtn.addEventListener("click", ()=>{
+  sessionStorage.setItem("name", "umaya");
+  sessionStorage.setItem("age", 30);
+  console.log(sessionStorage.getItem("name"));
+  console.log(sessionStorage.getItem("age"));
+
+  const usernameElm = document.querySelector(".username");
+  sessionStorage.setItem("username", usernameElm.value);
+  console.log(sessionStorage.getItem("username"));
+})
+
+
+
+// クロージャによる永続化の練習
+
+const closureBtn1 = document.querySelector(".closure1");
+const closureBtn2 = document.querySelector(".closure2");
+
+const closure = (initVal)=>{
+  let count = initVal;
+  console.log(`closure was called`);
+  return function(){
+    count++;
+    console.log(count);
+  }
+};
+
+const closureFunc1 = closure(0);
+const closureFunc2 = closure(100);
+
+closureBtn1.addEventListener("click", closureFunc1);
+closureBtn2.addEventListener("click", closureFunc2);
+
+// クロージャを使わなくても値の永続化は一応可能
+// let counter = 0;
+// closureBtn.addEventListener("click", ()=>{
+//   console.log(`button was clicked`);
+//   counter++;
+//   console.log(counter);
+// })
+
+
+
+// const closureBtn = document.querySelector(".closure");
+// const closure = (function(){
+//   let count = 0;
+//   return function(){
+//     count++;
+//     console.log(count);
+//   }
+// })();
+
+// closureBtn.addEventListener("click", ()=>{
+//   console.log(`closure was called`);
+//   closure();
+// });
