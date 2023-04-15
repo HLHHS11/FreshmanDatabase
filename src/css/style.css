@@ -1,3 +1,4 @@
+/* input type="date"をbootstrap風に就職 */
 input[class^="calendar"] {
     display: block;
     width: 100%;
@@ -19,3 +20,62 @@ input[class^="calendar"]:focus {
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
+
+/* スワイプで削除ボタン */
+.swipe-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.swipe-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: #f8f9fa;
+    padding: 20px;
+    transition: transform 0.3s;
+}
+
+.item-content {
+    z-index: 1;
+}
+
+.delete-btn {
+    position: absolute;
+    right: 0;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+
+/* スワイプで削除ボタン(プレーンjs) */
+.swipe-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .swipe-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: #f8f9fa;
+    padding: 20px;
+    transition: transform 0.3s;
+  }
+
+  .item-content {
+    z-index: 1;
+  }
+
+  .delete-btn {
+    position: absolute;
+    right: 0;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }

@@ -91,3 +91,65 @@ closureBtn2.addEventListener("click", closureFunc2);
 //   console.log(`closure was called`);
 //   closure();
 // });
+
+
+
+
+// スワイプで削除ボタン
+
+$(document).ready(function() {
+  let swipeStartX = 0;
+  let swipeEndX = 0;
+  let swipeThreshold = 50;
+
+  $('.swipe-item').on('touchstart', function(e) {
+    swipeStartX = e.touches[0].clientX;
+  });
+
+  $('.swipe-item').on('touchmove', function(e) {
+    swipeEndX = e.touches[0].clientX;
+  });
+
+  $('.swipe-item').on('touchend', function() {
+    const swipeDistance = swipeStartX - swipeEndX;
+
+    if (swipeDistance > swipeThreshold) {
+      $(this).css('transform', 'translateX(-100px)');
+      $(this).find('.delete-btn').css('opacity', '1');
+    } else if (swipeDistance < -swipeThreshold) {
+      $(this).css('transform', 'translateX(0)');
+      $(this).find('.delete-btn').css('opacity', '0');
+    }
+  });
+});
+
+
+// スワイプで削除ボタン(プレーンjs)
+document.addEventListener('DOMContentLoaded', function() {
+  const swipeItems = document.querySelectorAll('.swipe-item');
+  let swipeStartX = 0;
+  let swipeEndX = 0;
+  const swipeThreshold = 50;
+
+  swipeItems.forEach(function(swipeItem) {
+    swipeItem.addEventListener('touchstart', function(e) {
+      swipeStartX = e.touches[0].clientX;
+    });
+
+    swipeItem.addEventListener('touchmove', function(e) {
+      swipeEndX = e.touches[0].clientX;
+    });
+
+    swipeItem.addEventListener('touchend', function() {
+      const swipeDistance = swipeStartX - swipeEndX;
+
+      if (swipeDistance > swipeThreshold) {
+        this.style.transform = 'translateX(-100px)';
+        this.querySelector('.delete-btn').style.opacity = '1';
+      } else if (swipeDistance < -swipeThreshold) {
+        this.style.transform = 'translateX(0)';
+        this.querySelector('.delete-btn').style.opacity = '0';
+      }
+    });
+  });
+});
