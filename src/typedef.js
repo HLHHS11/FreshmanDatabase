@@ -1,3 +1,4 @@
+export * from "./typedef.js";
 
 /**
  * 230309 _idプロパティを追加
@@ -14,7 +15,11 @@
  * @property {string} comment
  * @property {string} id
  */
+
+/** @type {Info} */
 export const Info = {};
+
+
 
 
 /**

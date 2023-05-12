@@ -2,7 +2,7 @@ import { Info } from "./typedef.js"
 import { ModelRequest } from "./modelRequest.js" 
 import { ModelResponse} from "./modelResponse.js"
 import { GasApiClient } from "./http.js"
-import { View} from "./view.js"
+import { View } from "./view.js"
 // リクエストからルーティングされることになっている。
 // ルーティングによって呼ばれると、Modelからデータを取得したり更新したりして、viewを返す
 // ルーティングとは言いつつも、よくよく考えてみると結局各イベントハンドラが呼び出すってだけ
@@ -35,6 +35,7 @@ export class Controller {
         (async function () {
             /** @type {ModelResponse} */
             const modelResponse = await GasApiClient.httpPostRequest(URL, modelRequest);
+            modelResponse.request
             console.log(modelResponse);
             console.log("postに対するレスポンスが返ってきた");
             // viewに情報を渡す

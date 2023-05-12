@@ -1,16 +1,11 @@
 import { Info } from "./typedef.js"
 import { EventHandler } from "./eventHandler.js"
 
-/**
- * テンプレートから入力値を取得したりする
- * あらかじめ注意として書いとくと、
- * HTMLでドロップダウンは初期値が「学科」や「経験」なので、
- * そのままだった場合は空文字列に変換する必要がある
- */
+
 export class View {
     
     /**
-     * ボタン等を初期化（クリックに反応するようにする）
+     * ボタン等を初期化する
      * addEventListener()の第２引数は「イベントハンドラ」で、ボタンが押されたら具体的に何を行うのかが書かれている
      * @param {HTMLElement} viewElm
      */
@@ -50,9 +45,9 @@ export class View {
      */
     getInfo () {
         /** @type {Info} */
-        let info = {};
+        const info = {};
         let temp;   // validation用
-        // ↓trim()がないと変な空白？改行がひっついてくる
+        // ↓trim()がないと変な空白や改行がひっついてくる
         info.name = this.viewElm.querySelector(".name").querySelector(".form-control").value.trim();
         info.nickname = this.viewElm.querySelector(".nickname").querySelector(".form-control").value.trim();
         temp = this.viewElm.querySelector(".exp-and-years").querySelector(".btn").textContent.trim();
@@ -135,8 +130,8 @@ export class View {
 
 
     /**
-     * @param {Number} - 何番目のviewであるかを表す数値。ex: view3ならi=3
-     * @return {HTMLElement} - Viewインスタンスを返す
+     * @param {Number} 何番目のviewであるかを表す数値。ex: view3ならi=3
+     * @return {HTMLElement} Viewインスタンスを返す
      */
     static createViewElementWithNumbering (i) {
         const template = document.getElementById("view-template");
@@ -158,12 +153,8 @@ export class View {
      * search処理の前に呼び出したい。すでに出てる検索結果をクリアする
      */
     static clearViewElements () {
-        // const viewNodeList = document.querySelecotrAll("div[id^='view']");
-        // querySelectorAllを使わないのは気持ち悪いかもしれないが、
-        // idだけでうまくやる方法に気づいたのでそれで書いてみる
         for (let i=0; i<400; i++) {
             const viewElm = document.getElementById(`view${String(i)}`);
-            // 存在したら消去、存在しなければそこで終わりなのでbreak
             if (viewElm) {
                 viewElm.remove();
             } else {

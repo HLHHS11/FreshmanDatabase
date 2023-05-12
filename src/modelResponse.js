@@ -1,8 +1,8 @@
 import {Info} from "./typedef.js"
 
 /**
- * @typedef {Object} ModelRequest
- * @property {String} request
+ * @typedef ModelResponse
+ * @property {string} request
  * @property {string} status
  * @property {Info[]} infoArr
  * @property {Object} option
